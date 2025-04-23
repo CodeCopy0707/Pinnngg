@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Pinger</title>
+</head>
+<body>
+  <h1>Auto Ping Running...</h1>
+
+  <script>
+    const urlToPing = "https://github-ai-agent-individualfreelancer-4284b133.koyeb.app/";
+
+    function pingServer() {
+      fetch(urlToPing)
+        .then(response => console.log(`Pinged at ${new Date().toLocaleTimeString()}: Status ${response.status}`))
+        .catch(error => console.error('Ping failed:', error));
+      
+      // Schedule next ping between 5 to 15 minutes
+      const nextPingInMinutes = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+      const nextPingInMilliseconds = nextPingInMinutes * 60 * 1000;
+
+      console.log(`Next ping in ${nextPingInMinutes} minutes.`);
+      setTimeout(pingServer, nextPingInMilliseconds);
+    }
+
+    // Start first ping
+    pingServer();
+  </script>
+</body>
+</html>
