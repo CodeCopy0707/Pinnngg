@@ -5,26 +5,23 @@
   <title>Auto Pinger</title>
 </head>
 <body>
-  <h1>Auto Ping Running...</h1>
+  <h1>Auto Pinging...</h1>
 
   <script>
-    const urlToPing = "https://github-ai-agent-individualfreelancer-4284b133.koyeb.app/";
+    const url = "https://github-bot-individualfreelancer-7325554e.koyeb.app/";
 
-    function pingServer() {
-      fetch(urlToPing)
-        .then(response => console.log(`Pinged at ${new Date().toLocaleTimeString()}: Status ${response.status}`))
+    function ping() {
+      fetch(url)
+        .then(response => console.log(`Pinged at ${new Date().toLocaleTimeString()} - Status: ${response.status}`))
         .catch(error => console.error('Ping failed:', error));
       
-      // Schedule next ping between 5 to 15 minutes
-      const nextPingInMinutes = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
-      const nextPingInMilliseconds = nextPingInMinutes * 60 * 1000;
-
-      console.log(`Next ping in ${nextPingInMinutes} minutes.`);
-      setTimeout(pingServer, nextPingInMilliseconds);
+      const nextPing = Math.floor(Math.random() * (5 - 2 + 1) + 2) * 60 * 1000;
+      console.log(`Next ping in ${(nextPing / 60000).toFixed(2)} minutes.`);
+      
+      setTimeout(ping, nextPing);
     }
 
-    // Start first ping
-    pingServer();
+    ping();
   </script>
 </body>
 </html>
